@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кирилл | Веб-разработчик</title>
+    <link rel="stylesheet" href="Краски.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo">KIRILL</div>
+    <ul>
+        <li><a href="#home" class="nav-link active">Главная</a></li>
+        <li><a href="#about" class="nav-link">Обо мне</a></li>
+        <li><a href="#skills" class="nav-link">Навыки</a></li>
+        <li><a href="#projects" class="nav-link">Проекты</a></li>
+        <li><a href="#contact" class="nav-link">Контакты</a></li>
+    </ul>
+</nav>
+
+<header id="home" class="section hero">
+    <h1>Привет, я Кирилл</h1>
+    <p>Создаю современные и адаптивные сайты</p>
+    <a href="#projects" class="btn">Смотреть работы</a>
+</header>
+
+<section id="about" class="section fade">
+    <h2>Обо мне</h2>
+    <p>
+        Мне 21 год. Изучаю веб-разработку, работаю с HTML, CSS, PHP и MySQL.
+        Развиваюсь и создаю аккуратные, современные интерфейсы.
+    </p>
+</section>
+
+<section id="skills" class="section dark fade">
+    <h2>Навыки</h2>
+    <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">PHP</div>
+        <div class="skill">MySQL</div>
+    </div>
+</section>
+
+<section id="projects" class="section fade">
+    <h2>Проекты</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Онлайн-библиотека</h3>
+            <p>Поиск, фильтрация и корзина товаров.</p>
+        </div>
+        <div class="card">
+            <h3>Сайт-визитка</h3>
+            <p>Минималистичный адаптивный лендинг.</p>
+        </div>
+        <div class="card">
+            <h3>Учебный проект</h3>
+            <p>Работа с формами и базой данных.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section dark fade">
+    <h2>Контакты</h2>
+    <p>Email: example@mail.com</p>
+    <p>Telegram: @username</p>
+</section>
+
+<footer>
+    <p>© 2026 Кирилл | Экзаменационный проект</p>
+</footer>
+
+<script>
+const sections = document.querySelectorAll("section, header");
+const navLinks = document.querySelectorAll(".nav-link");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").substring(1) === entry.target.id) {
+                    link.classList.add("active");
+                }
+            });
+        }
+    });
+}, { threshold: 0.6 });
+
+sections.forEach(section => observer.observe(section));
+
+const fadeElements = document.querySelectorAll(".fade");
+
+const fadeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, { threshold: 0.3 });
+
+fadeElements.forEach(el => fadeObserver.observe(el));
+</script>
+
+</body>
+</html>
